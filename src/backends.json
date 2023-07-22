@@ -1,0 +1,40 @@
+[
+    {
+        "share_key": "example",
+        "host": "example.com",
+        "port": 443,
+        "ssl": true,
+        "ssl_cert_hostname": "example.com",
+        "ssl_check_cert": "always",
+        "ssl_sni_hostname": "example.com",
+        "connect_timeout": "1s",
+        "between_bytes_timeout": "10s",
+        "first_byte_timeout": "15s",
+        "max_connections": 200,
+        "host_header": "example.com",
+        "always_use_host_header": true,
+        "healthcheck": {
+            "method": "HEAD",
+            "path": "/healthcheck"
+        }
+    },
+    {
+        "share_key": "arayadev",
+        "host": "araya.dev",
+        "port": 443,
+        "ssl": true,
+        "ssl_cert_hostname": "araya.dev",
+        "ssl_check_cert": "always",
+        "ssl_sni_hostname": "araya.dev",
+        "connect_timeout": "1s",
+        "between_bytes_timeout": "10s",
+        "first_byte_timeout": "15s",
+        "max_connections": 200,
+        "host_header": "",
+        "always_use_host_header": true,
+        "healthcheck": {
+            "method": "GET",
+            "path": "/"
+        }
+    }
+]

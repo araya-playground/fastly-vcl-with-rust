@@ -1,0 +1,27 @@
+{{#each backends}}
+backend {{name}} {
+    .dynamic = true;
+    .share_key = "{{share_key}}";
+    .host = "{{host}}";
+    .port = "{{port}}";
+    .ssl = {{ssl}};
+    .ssl_sni_hostname = "{{host}}";
+    .ssl_cert_hostname = "{{host}}";
+    .ssl_check_cert = "{{ssl_check_cert}}";
+    .connect_timeout = {{connect_timeout}};
+    .host_header = "{{host}}";
+    .always_use_host_header = {{always_use_host_header}};
+    .first_byte_timeout = {{first_byte_timeout}};
+    .max_connections = {{max_connections}};
+    .between_bytes_timeout = {{between_bytes_timeout}};
+    .probe = {
+        .request = "{{healthcheck.method}} {{healthcheck.path}} HTTP/1.1" "Host: {{host}}" "Connection: close" "User-Agent: Fastly healthcheck";
+        .threshold = 1;
+        .window = 2;
+        .timeout = 5s;
+        .initial = 1;
+        .expected_response = 200;
+        .interval = 10s;
+        }
+    }
+{{/each}}
