@@ -1,0 +1,5 @@
+vcl_recv {
+	declare local var.debugText;
+	set var.debugText = "{{debugText}}"
+	set req.http.debug-text = var.debugText;
+}
