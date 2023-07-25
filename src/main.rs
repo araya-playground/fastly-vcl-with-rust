@@ -40,33 +40,3 @@ fn build_handlebars_data() -> Map<String, JSONValue> {
     data
 }
 
-#[derive(Deserialize, Serialize)]
-struct Healthcheck {
-    method: String,
-    path: String,
-}
-
-#[derive(Deserialize, Serialize)]
-struct Backend {
-    share_key: String,
-    host: String,
-    port: u16,
-    ssl: bool,
-    ssl_cert_hostname: String,
-    ssl_check_cert: String,
-    ssl_sni_hostname: String,
-    connect_timeout: String,
-    between_bytes_timeout: String,
-    first_byte_timeout: String,
-    max_connections: u32,
-    host_header: String,
-    always_use_host_header: bool,
-    healthcheck: Healthcheck,
-}
-
-fn build_backends() -> Result<Vec<Backend>, Box<dyn Error>> {
-    let file = File::open("src/backends.json")?;
-    let reader = BufReader::new(file);
-    let data: Vec<Backend> = serde_json::from_reader(reader)?;
-    Ok(data)
-}
