@@ -1,6 +1,5 @@
 use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::{wasm_bindgen, JsValue};
-use web_sys::console;
 
 #[derive(Deserialize, Serialize)]
 struct Healthcheck {
@@ -28,7 +27,6 @@ struct Backend {
 
 #[wasm_bindgen]
 pub fn build_backends(backends_json_str: &str) -> Result<JsValue, JsValue> {
-    console::log_1(&JsValue::from_str(backends_json_str));
     let data: Vec<Backend> = serde_json::from_str(backends_json_str).unwrap();
     Ok(serde_wasm_bindgen::to_value(&data)?)
 }
